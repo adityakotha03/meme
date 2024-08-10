@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert to Meme Format</title>
+</head>
+<body>
+    <h1>Image to Meme Format Converter</h1>
+    <input type="file" id="imageUpload" accept="image/*">
+    <button id="convertButton">Convert to .meme</button>
+    <a id="downloadLink" style="display: none;">Download .meme File</a>
+
+    <script>
+        document.getElementById('convertButton').addEventListener('click', function () {
+            const imageUpload = document.getElementById('imageUpload').files[0];
+
+            if (!imageUpload) {
+                alert("Please upload an image first.");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const imageDataUrl = event.target.result;
+                const base64Data = imageDataUrl.split(',')[1];
+
+                // Convert base64 data back to binary
+                const binary = atob(base64Data);
+                const array = [];
+                for (let i = 0; i < binary.length; i++) {
+                    array.push(binary.charCodeAt(i));
+                }
+                const blob = new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
+
+                // Create a download link
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = URL.createObjectURL(blob);
+                downloadLink.download = imageUpload.name.split('.')[0] + '.meme';
+                downloadLink.style.display = 'inline';
+                downloadLink.textContent = 'Download ' + imageUpload.name.split('.')[0] + '.meme';
+            };
+
+            reader.readAsDataURL(imageUpload);
+        });
+    </script>
+</body>
+</html>
