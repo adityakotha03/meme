@@ -1,39 +1,49 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+Python/__pycache__/
+Python/*.py[cod]
+Python/*$py.class
 
 # Distribution / packaging
-build/
-dist/
-*.egg-info/
-*.egg
-*.tar.gz
-*.zip
-*.whl
+Python/build/
+Python/dist/
+Python/*.egg-info/
+Python/*.egg
+Python/*.tar.gz
+Python/*.zip
+Python/*.whl
 
 # Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+Python/pip-log.txt
+Python/pip-delete-this-directory.txt
 
 # Virtual environments
-env/
-venv/
-ENV/
-venv.bak/
-*.env
+Python/env/
+Python/venv/
+Python/ENV/
+Python/venv.bak/
+Python/*.env
 
 # PyInstaller
-*.spec
+Python/*.spec
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# MacOS files
+# testing
+/coverage
+
+# production
+/build
+
+# misc
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Editor/IDE files
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
