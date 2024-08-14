@@ -1,24 +1,30 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import logo from './logo.svg';
-import './App.css';
+import ImageGallery from './ImageGallery';
+import ImageDetails from './ImageDetails';
+
+import './output.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Router>
+    <div className="min-h-screen flex flex-col">
+      <header className="flex flex-col text-center justify-center py-8">
+        <h1 className='text-xl font-bold'>ChallengePixels</h1>
+        <p>Challenge yourself to unlock premium images.</p>
       </header>
+      <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<ImageGallery />} />
+            <Route path="/download/:id" element={<ImageDetails />} />
+          </Routes>
+        </main>
+      <div className="text-center text-sm">
+        Created by Your Name
+      </div>
     </div>
+    </Router>
   );
 }
 
