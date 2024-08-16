@@ -4,6 +4,11 @@ import styles from './WordleGame.module.css';
 
 const WORD_LENGTH = 5;
 const MAX_GUESSES = 6;
+const KEYBOARD_LAYOUT = [
+  ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+  ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
+];
 
 const WordleGame = ({ onClose, onGameSuccess }) => {
   const [targetWord, setTargetWord] = useState('');
@@ -11,19 +16,27 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
   const [currentGuess, setCurrentGuess] = useState('');
   const [currentRow, setCurrentRow] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     fetchTargetWord();
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
-    if (targetWord) {
+    if (targetWord && !isMobile) {
       window.addEventListener('keydown', handleKeyDown);
       return () => {
         window.removeEventListener('keydown', handleKeyDown);
       };
     }
-  }, [currentGuess, currentRow, gameOver, targetWord]);
+  }, [currentGuess, currentRow, gameOver, targetWord, isMobile]);
+
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
 
   const fetchTargetWord = async () => {
     try {
@@ -46,6 +59,20 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
       setCurrentGuess((prev) => prev.slice(0, -1));
     } else if (/^[A-Za-z]$/.test(event.key) && currentGuess.length < WORD_LENGTH) {
       setCurrentGuess((prev) => prev + event.key.toUpperCase());
+    }
+  };
+
+  const handleVirtualKeyPress = (key) => {
+    if (gameOver || !targetWord) return;
+
+    if (key === 'ENTER') {
+      if (currentGuess.length === WORD_LENGTH) {
+        submitGuess();
+      }
+    } else if (key === 'BACKSPACE') {
+      setCurrentGuess((prev) => prev.slice(0, -1));
+    } else if (currentGuess.length < WORD_LENGTH) {
+      setCurrentGuess((prev) => prev + key);
     }
   };
 
@@ -92,6 +119,19 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
     return `${styles.tile} ${styles.absent}`;
   };
 
+  const getKeyClass = (key) => {
+    if (key === 'ENTER' || key === 'BACKSPACE') return styles.specialKey;
+    
+    for (let row = 0; row <= currentRow; row++) {
+      const guess = guesses[row];
+      const index = guess.indexOf(key);
+      if (index !== -1) {
+        return getTileClass(key, index, row);
+      }
+    }
+    return styles.key;
+  };
+
   if (!targetWord) return <div>Loading...</div>;
 
   return (
@@ -121,6 +161,23 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
             </div>
           ))}
         </div>
+        {isMobile && (
+          <div className={styles.keyboard}>
+            {KEYBOARD_LAYOUT.map((row, rowIndex) => (
+              <div key={rowIndex} className={styles.keyboardRow}>
+                {row.map((key) => (
+                  <button
+                    key={key}
+                    className={`${styles.key} ${getKeyClass(key)}`}
+                    onClick={() => handleVirtualKeyPress(key)}
+                  >
+                    {key}
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
         {gameOver && (
           <div className={styles.gameOver}>
             <p className={styles.message}>

@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const images = [
-    { id: 1, src: `${process.env.PUBLIC_URL + "/images/image1.jpg"}`, title: 'Image 1', description: 'Description of Image 1' },
-    { id: 2, src: `${process.env.PUBLIC_URL + "/images/image2.jpg"}`, title: 'Image 2', description: 'Description of Image 2' },
-    { id: 3, src: `${process.env.PUBLIC_URL + "/images/image3.jpg"}`, title: 'Image 3', description: 'Description of Image 3' },
-    { id: 4, src: `${process.env.PUBLIC_URL + "/images/image4.jpg"}`, title: 'Image 4', description: 'Description of Image 4' },
+    { id: 1, src: `${process.env.PUBLIC_URL + "/images/image1.jpg"}`, title: 'Image 1' },
+    { id: 2, src: `${process.env.PUBLIC_URL + "/images/image2.jpg"}`, title: 'Image 2' },
+    { id: 3, src: `${process.env.PUBLIC_URL + "/images/image3.jpg"}`, title: 'Image 3' },
+    { id: 4, src: `${process.env.PUBLIC_URL + "/images/image4.jpg"}`, title: 'Image 4' },
   ];
 
 const ImageGallery = () => {
