@@ -43,7 +43,7 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
     try {
       const response = await fetch('https://random-word-api.herokuapp.com/word?number=1&length=5');
       const data = await response.json();
-      setTargetWord('REACT');
+      etTargetWord(data[0].toUpperCase());
     } catch (error) {
       console.error('Error fetching target word:', error);
     }
