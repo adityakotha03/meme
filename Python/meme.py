@@ -31,12 +31,13 @@ def decode_from_meme(input_file, output_file):
 
     blocks = []
     for y in range(BLOCK_ROWS):
+        cols = []
         for x in range(BLOCK_COLUMNS):
             block = img.crop((x * block_width, y * block_height, 
                               (x + 1) * block_width, (y + 1) * block_height))
-            blocks.append(block)
-
-    # random.shuffle(blocks)
+            cols.append(block)
+        random.shuffle(cols)
+        blocks.extend(cols)
 
     current_block = None
     current_x, current_y = 1, 0
@@ -191,8 +192,8 @@ def decode_from_meme(input_file, output_file):
     pygame.quit()
 
 def main():
-    encode_to_meme("input.jpg", "output.meme")
-    decode_from_meme("output.meme", "decoded.jpg")
+    encode_to_meme("sample/input.jpg", "sample/output.meme")
+    decode_from_meme("sample/output.meme", "sample/decoded.jpg")
 
 if __name__ == "__main__":
     main()
