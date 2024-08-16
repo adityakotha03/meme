@@ -75,6 +75,8 @@ For Mac or Linux users, you can use the `meme.py` script located inside the `Pyt
 
 We have also provided a sample image inside the `Python/sample` directory for you to try out.
 
+Once you finish the game, the images are automatically saved to the path where the original `.meme` file is located.
+
 ---
 
 Feel free to reach out if you encounter any issues or have any questions in the [Discussions](https://github.com/adityakotha03/meme/discussions)!
