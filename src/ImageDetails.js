@@ -92,7 +92,7 @@ const ImageDetails = () => {
     successMessage.style.zIndex = '1000';
   
     const messageText = document.createElement('p');
-    messageText.innerText = 'Congratulations! You solved the puzzle! Check out how to access the .meme files ';
+    messageText.innerText = 'Congratulations! Your file is automatically downloaded! Check out how to run the .meme files ';
     
     const link = document.createElement('a');
     link.href = 'https://github.com/adityakotha03/meme/tree/main?tab=readme-ov-file#how-to-use-the-meme-files';
@@ -140,7 +140,7 @@ const ImageDetails = () => {
           </div>
         ))}
       </div> */}
-      <div className="flex flex-col md:flex-row gap-2 mt-6">
+      <div className="flex flex-col md:flex-row gap-2 mt-3">
         <button
           onClick={handleDownload}
           className="inline-block bg-blue-500 text-white py-2 px-4 rounded"

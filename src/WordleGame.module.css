@@ -132,7 +132,7 @@
   .closeButton {
     background: #3498db;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -198,4 +198,77 @@
   .keyboardRow:nth-child(3) .key:first-child, 
   .keyboardRow:nth-child(3) .key:last-child {
     width: 60px;
-  }  
+  }
+
+  .instructions {
+    text-align: left;
+  }
+  
+  .instructions h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .instructions ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .instructions ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .instructions ul li span {
+    font-weight: bold;
+    padding: 0.25rem;
+    border-radius: 4px;
+    display: inline-block;
+    min-width: 2.5rem;
+    text-align: center;
+  }
+  
+  .startButton {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .startButton:hover {
+    background-color: #2563eb;
+  }
+  
+  .smallTile {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+  }
+  
+  .smallTile.correct {
+    background-color: #6aaa64;
+    color: white;
+  }
+  
+  .smallTile.present {
+    background-color: #c9b458;
+    color: white;
+  }
+  
+  .smallTile.absent {
+    background-color: #787c7e;
+    color: white;
+  }

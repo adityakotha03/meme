@@ -17,6 +17,7 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
   const [currentRow, setCurrentRow] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true); // Add state to manage instructions modal
 
   useEffect(() => {
     fetchTargetWord();
@@ -26,13 +27,13 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
   }, []);
 
   useEffect(() => {
-    if (targetWord && !isMobile) {
+    if (targetWord && !isMobile && !showInstructions) {
       window.addEventListener('keydown', handleKeyDown);
       return () => {
         window.removeEventListener('keydown', handleKeyDown);
       };
     }
-  }, [currentGuess, currentRow, gameOver, targetWord, isMobile]);
+  }, [currentGuess, currentRow, gameOver, targetWord, isMobile, showInstructions]);
 
   const checkMobile = () => {
     setIsMobile(window.innerWidth <= 768);
@@ -42,7 +43,7 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
     try {
       const response = await fetch('https://random-word-api.herokuapp.com/word?number=1&length=5');
       const data = await response.json();
-      setTargetWord(data[0].toUpperCase());
+      setTargetWord('REACT');
     } catch (error) {
       console.error('Error fetching target word:', error);
     }
@@ -132,7 +133,9 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
     return styles.key;
   };
 
-  if (!targetWord) return <div>Loading...</div>;
+  const closeInstructions = () => {
+    setShowInstructions(false);
+  };
 
   return (
     <div className={styles.overlay}>
@@ -143,50 +146,66 @@ const WordleGame = ({ onClose, onGameSuccess }) => {
             <X size={24} />
           </button>
         </div>
-        <div className={styles.grid}>
-          {guesses.map((guess, rowIndex) => (
-            <div key={rowIndex} className={styles.row}>
-              {Array.from({ length: WORD_LENGTH }).map((_, colIndex) => {
-                const letter = guess[colIndex] || '';
-                const tileClass = getTileClass(letter, colIndex, rowIndex);
-                return (
-                  <div
-                    key={colIndex}
-                    className={`${tileClass} ${rowIndex === currentRow ? styles.activeTile : ''}`}
-                  >
-                    {rowIndex === currentRow && colIndex < currentGuess.length ? currentGuess[colIndex] : letter}
-                  </div>
-                );
-              })}
+        {showInstructions ? (
+          <div className={styles.instructions}>
+            <h3 className={styles.title}>How to Play</h3>
+            <ul>
+              <li>Guess the 5-letter word.</li>
+              <li>You have 6 attempts to guess the word.</li>
+              <li><span className={`${styles.smallTile} ${styles.correct}`}></span> indicates the correct letter in the correct position.</li>
+              <li><span className={`${styles.smallTile} ${styles.present}`}></span> indicates the correct letter in the wrong position.</li>
+              <li><span className={`${styles.smallTile} ${styles.absent}`}></span> indicates the letter is not in the word.</li>
+            </ul>
+            <button onClick={closeInstructions} className={styles.startButton}>Start Game</button>
+          </div>
+        ) : (
+          <>
+            <div className={styles.grid}>
+              {guesses.map((guess, rowIndex) => (
+                <div key={rowIndex} className={styles.row}>
+                  {Array.from({ length: WORD_LENGTH }).map((_, colIndex) => {
+                    const letter = guess[colIndex] || '';
+                    const tileClass = getTileClass(letter, colIndex, rowIndex);
+                    return (
+                      <div
+                        key={colIndex}
+                        className={`${tileClass} ${rowIndex === currentRow ? styles.activeTile : ''}`}
+                      >
+                        {rowIndex === currentRow && colIndex < currentGuess.length ? currentGuess[colIndex] : letter}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        {isMobile && (
-          <div className={styles.keyboard}>
-            {KEYBOARD_LAYOUT.map((row, rowIndex) => (
-              <div key={rowIndex} className={styles.keyboardRow}>
-                {row.map((key) => (
-                  <button
-                    key={key}
-                    className={`${styles.key} ${getKeyClass(key)}`}
-                    onClick={() => handleVirtualKeyPress(key)}
-                  >
-                    {key}
-                  </button>
+            {isMobile && (
+              <div className={styles.keyboard}>
+                {KEYBOARD_LAYOUT.map((row, rowIndex) => (
+                  <div key={rowIndex} className={styles.keyboardRow}>
+                    {row.map((key) => (
+                      <button
+                        key={key}
+                        className={`${styles.key} ${getKeyClass(key)}`}
+                        onClick={() => handleVirtualKeyPress(key)}
+                      >
+                        {key}
+                      </button>
+                    ))}
+                  </div>
                 ))}
               </div>
-            ))}
-          </div>
-        )}
-        {gameOver && (
-          <div className={styles.gameOver}>
-            <p className={styles.message}>
-              {currentGuess === targetWord ? 'Congratulations!' : `The word was ${targetWord}`}
-            </p>
-            <button onClick={onClose} className={styles.closeButton}>
-              Close
-            </button>
-          </div>
+            )}
+            {gameOver && (
+              <div className={styles.gameOver}>
+                <p className={styles.message}>
+                  {currentGuess === targetWord ? 'Congratulations!' : `The word was ${targetWord}`}
+                </p>
+                <button onClick={onClose} className={styles.closeButton}>
+                  Close
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

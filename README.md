@@ -2,6 +2,8 @@
 
 Challenge yourself to unlock premium images. We've all encountered stock image apps that claim to be "FREE" but require you to sign up for unnecessary services or pay hidden fees. ChallengePixels is a truly free stock image app with a twist: you earn the images you want.
 
+![demo](assets/web_demo.gif)
+
 ## Installation Locally
 
 1. Clone the repository:
