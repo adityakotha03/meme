@@ -1,8 +1,17 @@
 # ChallengePixels
 
-Challenge yourself to unlock premium images. We've all encountered stock image apps that claim to be "FREE" but require you to sign up for unnecessary services or pay hidden fees. ChallengePixels is a truly free stock image app with a twist: you earn the images you want.
+**ChallengePixels**: where unlocking premium images isn't just a click away—it's an adventure! We've all been there, scrolling through so-called "FREE" stock image sites only to be bombarded with sign-up forms, upsells, and hidden fees. But not here! **ChallengePixels** is genuinely free with one fun twist: you've got to **earn** the images you want.
 
+Once you've conquered our challenge, you'll be able to download the image in our soon-to-be-legendary (and completely made-up) file format: **MEME**—**Magnificently Eccentric Media Encapsulation Format**. (Seriously, it's totally a thing... maybe.) Wondering how to open this majestic format? Don't worry, we’ve got you covered! Check out the instructions [here](https://github.com/adityakotha03/meme?tab=readme-ov-file#how-to-use-the-meme-files).
+
+Below, you'll find videos that show you how to access the images and crack open our **.MEME** files to reveal your well-earned treasure. **Scroll down for more hilarious tutorials—because who said tech can't be fun?**
+
+## Demo
 ![demo](assets/web_demo.gif)
+
+---
+
+![demo](assets/meme.gif)
 
 ## Installation Locally
 
@@ -69,3 +78,5 @@ We have also provided a sample image inside the `Python/sample` directory for yo
 ---
 
 Feel free to reach out if you encounter any issues or have any questions in the [Discussions](https://github.com/adityakotha03/meme/discussions)!
+
+Enjoy the journey, embrace the challenges, and remember: in the world of **ChallengePixels**, nothing is free... except everything, if you're up for the challenge!
