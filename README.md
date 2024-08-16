@@ -1,6 +1,6 @@
 # ChallengePixels
 
-**ChallengePixels**: where unlocking premium images isn't just a click away—it's an adventure! We've all been there, scrolling through so-called "FREE" stock image sites only to be bombarded with sign-up forms, upsells, and hidden fees. But not here! **ChallengePixels** is genuinely free with one fun twist: you've got to **earn** the images you want.
+**[ChallengePixels](https://adityakotha03.github.io/meme/)**: where unlocking premium images isn't just a click away—it's an adventure! We've all been there, scrolling through so-called "FREE" stock image sites only to be bombarded with sign-up forms, upsells, and hidden fees. But not here! **ChallengePixels** is genuinely free with one fun twist: you've got to **earn** the images you want.
 
 Once you've conquered our challenge, you'll be able to download the image in our soon-to-be-legendary (and completely made-up) file format: **MEME**—**Magnificently Eccentric Media Encapsulation Format**. (Seriously, it's totally a thing... maybe.) Wondering how to open this majestic format? Don't worry, we’ve got you covered! Check out the instructions [here](https://github.com/adityakotha03/meme?tab=readme-ov-file#how-to-use-the-meme-files).
 
